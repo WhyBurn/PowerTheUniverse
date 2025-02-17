@@ -1,7 +1,7 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="SpecialResource_UI" src="project://database/Assets/UI/Special%20Resources/SpecialResource_UI.uxml?fileID=9197481963319205126&amp;guid=f0c8c85606c84174199a7853e75177c6&amp;type=3#SpecialResource_UI" />
     <Style src="project://database/Assets/UI/Inspector/InspectorMenu_StyleSheet.uss?fileID=7433441132597879392&amp;guid=147deab159b995c4e9b916c33977241c&amp;type=3#InspectorMenu_StyleSheet" />
-    <engine:VisualElement name="SpecialResourcesContainer" picking-mode="Ignore" style="flex-grow: 1; align-self: center; justify-content: center;">
+    <engine:VisualElement name="SpecialResourcesContainer" picking-mode="Ignore" style="flex-grow: 0; justify-content: center; top: auto; bottom: auto; align-self: flex-start;">
         <engine:Instance template="SpecialResource_UI" name="SolarResource" picking-mode="Ignore" />
         <engine:Instance template="SpecialResource_UI" name="CoalResource" picking-mode="Ignore" />
         <engine:Instance template="SpecialResource_UI" name="WindResource" picking-mode="Ignore" />
