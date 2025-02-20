@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pylon_Data
   m_EditorClassIdentifier: 
   buildingName: Pylon
-  cost: 10
+  cost: 100
   scienceCost: 0
   mass: 15
   maxPowerLines: 4

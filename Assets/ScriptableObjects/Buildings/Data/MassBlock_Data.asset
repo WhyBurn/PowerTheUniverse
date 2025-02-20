@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MassBlock_Data
   m_EditorClassIdentifier: 
   buildingName: Mass Block
-  cost: 50
+  cost: 500
   scienceCost: 0
   mass: 100
   maxPowerLines: 0

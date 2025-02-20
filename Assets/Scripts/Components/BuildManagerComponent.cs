@@ -959,7 +959,7 @@ public class BuildManagerComponent : MonoBehaviour
 				}
 
 				// Cable Cost
-				int cableCost = Mathf.CeilToInt(cableCursor.Length);
+				int cableCost = Mathf.CeilToInt(cableCursor.Length * Data.CableCostPerLength);
 				int remainingCash = gameController.Cash - (resolution.totalCost + cableCost);
 				bool canAffordCable =  remainingCash >= 0;
 				if (!canAffordCable)
@@ -1070,7 +1070,7 @@ public class BuildManagerComponent : MonoBehaviour
 				warnings.AddCableWarning(new BuildWarning($"Cable is {formatRemainingLength} units too long.", true));
 			}
 			// Cable Cost
-			int cableCost = Mathf.CeilToInt(cableCursor.Length);
+			int cableCost = Mathf.CeilToInt(cableCursor.Length * Data.CableCostPerLength);
 			int remainingCash = gameController.Cash - (resolution.totalCost + cableCost);
 			bool canAffordCable = remainingCash >= 0;
 			if (!canAffordCable)

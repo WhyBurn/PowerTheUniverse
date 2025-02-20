@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: AntimatterSphere_Data
   m_EditorClassIdentifier: 
   buildingName: Antimatter Sphere
-  cost: 250
-  scienceCost: 5
+  cost: 2500
+  scienceCost: 50
   mass: -100
   maxPowerLines: 0
   buildingType: 0

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Thruster_Data
   m_EditorClassIdentifier: 
   buildingName: Thruster
-  cost: 70
-  scienceCost: 1
+  cost: 700
+  scienceCost: 10
   mass: 30
   maxPowerLines: 1
   buildingType: 2

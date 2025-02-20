@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SolarFarmLarge_Data
   m_EditorClassIdentifier: 
   buildingName: Large Solar Farm
-  cost: 700
-  scienceCost: 40
+  cost: 7000
+  scienceCost: 400
   mass: 30
   maxPowerLines: 1
   buildingType: 1

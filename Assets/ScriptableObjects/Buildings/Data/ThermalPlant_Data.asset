@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ThermalPlant_Data
   m_EditorClassIdentifier: 
   buildingName: Geothermal Plant
-  cost: 1500
-  scienceCost: 80
+  cost: 15000
+  scienceCost: 800
   mass: 120
   maxPowerLines: 1
   buildingType: 1

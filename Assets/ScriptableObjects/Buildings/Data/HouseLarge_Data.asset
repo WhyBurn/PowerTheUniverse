@@ -20,7 +20,7 @@ MonoBehaviour:
   buildingType: 2
   powerProduced: 0
   powerRequired: 20
-  income: 240
+  income: 300
   upkeep: 0
   scienceIncome: 0
   requiredResource: 4

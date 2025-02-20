@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FissionPlantSmall_Data
   m_EditorClassIdentifier: 
   buildingName: Fission Plant
-  cost: 100
+  cost: 1000
   scienceCost: 0
   mass: 60
   maxPowerLines: 1

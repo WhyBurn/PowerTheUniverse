@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83697e6c3f63ccf4f90e9a03263812af, type: 3}
   m_Name: Basic Tutorial
   m_EditorClassIdentifier: 
-  startingCash: 1000
+  startingCash: 10000
   cashGoal: 100
   timeLimit: 600
   missionName: Basic Tutorial

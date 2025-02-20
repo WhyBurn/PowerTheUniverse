@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour
 	private bool gameEnded = false;
 	private bool gamePaused = false;
 	private int prePauseGameSpeed = 1;
+	private int preZeroGameSpeed = 1;
 
 	[HideInInspector] public UnityEvent OnLevelLoad = new UnityEvent();
 
@@ -82,7 +83,7 @@ public class GameController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
-		GameSpeed = 1;
+		GameSpeed = 0;
         gameManager = new GameManager(this);
         cashLabel = statsDocument.rootVisualElement.Q("Cash") as Label;
         incomeLabel = statsDocument.rootVisualElement.Q("Income") as Label;
@@ -160,6 +161,19 @@ public class GameController : MonoBehaviour
 		}
 		else
 		{
+			if (Input.GetKeyDown(KeyCode.P) && !gamePaused)
+			{
+				if (GameSpeed == 0)
+				{
+					GameSpeed = preZeroGameSpeed;
+				}
+				else
+				{
+					preZeroGameSpeed = GameSpeed;
+					GameSpeed = 0;
+				}
+			}
+
 			// Replaced gameSpeed with Time.timeScale, so no longer need to multiply by gameSpeed.
 			gameManager.Update(GameSpeed * Time.unscaledDeltaTime);
 
@@ -177,7 +191,16 @@ public class GameController : MonoBehaviour
 	public void IncrementGameSpeed()
 	{
 		if (!gameEnded && GameSpeed < 5)
-			++GameSpeed;
+		{
+			if (GameSpeed == 0)
+			{
+				GameSpeed = Mathf.Min(5, preZeroGameSpeed + 1);
+			}
+			else
+			{
+				++GameSpeed;
+			}
+		}
 	}
 
 	/// <summary>
@@ -186,7 +209,16 @@ public class GameController : MonoBehaviour
 	public void DecrementGameSpeed()
 	{
 		if (!gameEnded && GameSpeed > 1)
-			--GameSpeed;
+		{
+			if (GameSpeed == 0)
+			{
+				GameSpeed = Mathf.Max(1, preZeroGameSpeed - 1);
+			}
+			else
+			{
+				--GameSpeed;
+			}
+		}
 	}
 
 	public void PauseGame()
@@ -356,6 +388,7 @@ public class GameController : MonoBehaviour
 			RegisterBuilding(resolution.builtBuilding);
 			gameManager.SpendMoney(resolution.builtBuilding.Data.cost);
 			gameManager.SpendScience(resolution.builtBuilding.Data.scienceCost);
+			UpdateBuildingResources();
 			sfxAudio.clip = buildClip;
 			sfxAudio.Play();
 		}
@@ -363,7 +396,7 @@ public class GameController : MonoBehaviour
 		if (resolution.successfullyPlacedCable)
 		{
 			RegisterCable(resolution.builtCable);
-			gameManager.SpendMoney(Mathf.CeilToInt(resolution.builtCable.Length));
+			gameManager.SpendMoney(Mathf.CeilToInt(resolution.builtCable.Length * Data.CableCostPerLength));
 			if(!sfxAudio.isPlaying)
 			{
                 sfxAudio.clip = cableConnectClip;

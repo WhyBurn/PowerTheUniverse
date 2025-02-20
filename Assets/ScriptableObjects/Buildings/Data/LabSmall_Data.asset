@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LabSmall_Data
   m_EditorClassIdentifier: 
   buildingName: Small Lab
-  cost: 75
+  cost: 750
   scienceCost: 0
   mass: 20
   maxPowerLines: 1

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83697e6c3f63ccf4f90e9a03263812af, type: 3}
   m_Name: Biggy System
   m_EditorClassIdentifier: 
-  startingCash: 350
+  startingCash: 3500
   cashGoal: 3500
   timeLimit: 900
   missionName: Biggy System

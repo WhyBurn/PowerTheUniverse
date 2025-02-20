@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83697e6c3f63ccf4f90e9a03263812af, type: 3}
   m_Name: Asteroid Field
   m_EditorClassIdentifier: 
-  startingCash: 600
+  startingCash: 6000
   cashGoal: 3000
   timeLimit: 720
   missionName: Asteroid Field

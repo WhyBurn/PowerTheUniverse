@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Pylon_XL_Data
   m_EditorClassIdentifier: 
   buildingName: Pylon XL
-  cost: 200
-  scienceCost: 0
+  cost: 2000
+  scienceCost: 2
   mass: 45
   maxPowerLines: 5
   buildingType: 0

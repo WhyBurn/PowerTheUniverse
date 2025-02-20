@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 public class GameManager
 {
-    private readonly int paymentInterval = 30;
+    private readonly int paymentInterval = 1;
+    private readonly int enoughIncomeCounts = 20;
 
     private List<Building> buildings = new List<Building>();
     private int income;
@@ -14,7 +15,7 @@ public class GameManager
     private MissionData currentMission;
     private int scienceHeld;
     private int scienceIncome;
-    private bool hadEnoughIncomePreviously;
+    private int hadEnoughIncomeCounts;
     private int nextGroupId;
     private SortedSet<int> freeGroupIds = new SortedSet<int>();
 
@@ -65,7 +66,7 @@ public class GameManager
     //Use this if buildings don't need to be instantiated at start.
     public void StartMission(MissionData mission)
     {
-        hadEnoughIncomePreviously = false;
+        hadEnoughIncomeCounts = 0;
         currentMission = mission;
         cash = mission.startingCash;
         scienceHeld = mission.startingScience;
@@ -78,7 +79,7 @@ public class GameManager
     //Use this if BuildingComponents need a reference to the Building object being used by the manager.
     public void StartMission(MissionData mission, LevelBuilder level)
     {
-        hadEnoughIncomePreviously = false;
+        hadEnoughIncomeCounts = 0;
         currentMission = mission;
         cash = mission.startingCash;
         scienceHeld = mission.startingScience;
@@ -114,15 +115,19 @@ public class GameManager
             }
             if (income >= currentMission.cashGoal)
             {
-                if (!hadEnoughIncomePreviously)
+                if (hadEnoughIncomeCounts < enoughIncomeCounts)
                 {
-                    hadEnoughIncomePreviously = true;
+                    ++hadEnoughIncomeCounts;
                 }
                 else
                 {
                     EndGame();
                     return;
                 }
+            }
+            else
+            {
+                hadEnoughIncomeCounts = 0;
             }
         }
         if(endTime > 0 && timePassed > endTime)
