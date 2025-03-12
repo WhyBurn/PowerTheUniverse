@@ -86,7 +86,7 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 	private BuildingSettingEntry[] displayingBuildingsList;
 	private List<BuildSubMenuButtonBinding> buildButtonBindings = new List<BuildSubMenuButtonBinding>();
 
-	private Dictionary<int, InspectorUIComponent.InspectorLayer> inspectorLayers = new Dictionary<int, InspectorUIComponent.InspectorLayer>();
+	private Dictionary<int, InspectorLayer> inspectorLayers = new Dictionary<int, InspectorLayer>();
 
 	[HideInInspector] public UnityEvent OnShow = new UnityEvent();
 	[HideInInspector] public UnityEvent OnHide = new UnityEvent();
@@ -200,7 +200,7 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 
 		if (!inspectorLayers.ContainsKey(buttonId))
 		{
-			InspectorUIComponent.InspectorLayer newLayer = inspector.AddLayer(buildingSettings, InspectorUIComponent.InspectorLayerType.UI_HOVER);
+			InspectorLayer newLayer = inspector.AddLayer(buildingSettings, InspectorLayerType.UI_HOVER);
 			inspectorLayers.Add(buttonId, newLayer);
 		}
 	}

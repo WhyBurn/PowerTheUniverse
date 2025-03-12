@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using werignac.Utils;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using AstralAvarice.Utils.Layers;
 
 [RequireComponent(typeof(UIDocument))]
 public class InspectorUIComponent : MonoBehaviour
@@ -16,33 +17,9 @@ public class InspectorUIComponent : MonoBehaviour
 	// SELECT: The player clicked on an inspectable object. No build mode is set.
 	// BUILD_MODE: The player is in a particular build mode.
 	// UI_HOVER: The player is hovering over some UI.
-	public enum InspectorLayerType { DEFAULT = 1, HOVER = 2, SELECT = 4, BUILD_MODE = 8, UI_HOVER = 16 }
 
 	// Layers that cannot be used by outside scripts.
-	private const int LOCKED_LAYERS = (int) (InspectorLayerType.DEFAULT | InspectorLayerType.HOVER | InspectorLayerType.SELECT | InspectorLayerType.BUILD_MODE);
-
-	public class InspectorLayer : IComparable<InspectorLayer>
-	{
-		public readonly IInspectable inspectable;
-		public readonly InspectorLayerType layer;
-
-		public InspectorLayer(IInspectable inspectable, InspectorLayerType layer)
-		{
-			this.inspectable = inspectable;
-			this.layer = layer;
-		}
-
-		public int CompareTo(InspectorLayer other)
-		{
-			if (layer == other.layer)
-				return 0;
-
-			if (layer > other.layer)
-				return 1;
-
-			return -1;
-		}
-	}
+	private const int LOCKED_LAYERS = (int) (InspectorLayerType.DEFAULT | InspectorLayerType.HOVER | InspectorLayerType.SELECT);
 
 	private UIDocument uiDocument;
 	
@@ -98,8 +75,6 @@ public class InspectorUIComponent : MonoBehaviour
 		inspectorUIContainer = uiDocument.rootVisualElement.Q("ScrolledContent");
 
 		collapseButton.RegisterCallback<ClickEvent>(CollapseButton_OnClick);
-
-		BuildManagerComponent.Instance.OnStateChanged.AddListener(BuildManager_OnStateChanged);
 	}
 
 	public InspectorLayer AddLayer(IInspectable inspectable, InspectorLayerType layer)
@@ -120,8 +95,8 @@ public class InspectorUIComponent : MonoBehaviour
 
 	public bool RemoveLayer(InspectorLayer toRemove)
 	{
-		if ((LOCKED_LAYERS & (int) toRemove.layer) != 0)
-			throw new ArgumentException($"Could not externally remove an inspector layer from layer {toRemove.layer}. This layer is managed by the InspectorUIComponent itself.");
+		if ((LOCKED_LAYERS & (int) toRemove.LayerType) != 0)
+			throw new ArgumentException($"Could not externally remove an inspector layer from layer {toRemove.LayerType}. This layer is managed by the InspectorUIComponent itself.");
 
 		bool didRemove = activeInspectorLayers.Remove(toRemove);
 		if(didRemove)
@@ -129,32 +104,6 @@ public class InspectorUIComponent : MonoBehaviour
 			MarkForUIUpdate();
         }
 		return didRemove;
-	}
-
-	private void BuildManager_OnStateChanged(BuildState oldState, BuildState newState)
-	{
-		// Remove any layers based on the Build Mode.
-		activeInspectorLayers.RemoveWhere((InspectorLayer layer) => { return layer.layer == InspectorLayerType.BUILD_MODE; });
-
-		switch(newState.GetStateType())
-		{
-			case BuildStateType.BUILDING:
-			case BuildStateType.BUILDING_CHAINED:
-				BuildingBuildState buildingBuildState = newState as BuildingBuildState;
-				activeInspectorLayers.Add(new InspectorLayer(buildingBuildState, InspectorLayerType.BUILD_MODE));
-				break;
-			case BuildStateType.CABLE:
-				activeInspectorLayers.Add(new InspectorLayer(new InspectableCable(), InspectorLayerType.BUILD_MODE));
-				break;
-			case BuildStateType.DEMOLISH:
-				activeInspectorLayers.Add(new InspectorLayer(new InspectableDemolish(), InspectorLayerType.BUILD_MODE));
-				break;
-			case BuildStateType.MOVE:
-				activeInspectorLayers.Add(new InspectorLayer(new InspectableMove(), InspectorLayerType.BUILD_MODE));
-				break;
-		}
-
-		MarkForUIUpdate();
 	}
 
 	private void CollapseButton_OnClick(ClickEvent evt)
@@ -288,14 +237,14 @@ public class InspectorUIComponent : MonoBehaviour
 		// If the topmost inspectable has not changed, don't change the UI.
 		if (currentInspectorLayer != null &&
 			topmostLayer.inspectable == currentInspectorLayer.inspectable &&
-			topmostLayer.layer == currentInspectorLayer.layer)
+			topmostLayer.LayerType == currentInspectorLayer.LayerType)
 			return;
 
 		if (currentInspectorLayer != null)
 		{
 			// If the old layer was hover or select, we need to clear hover and select.
 			
-			switch (currentInspectorLayer.layer)
+			switch (currentInspectorLayer.LayerType)
 			{
 				case InspectorLayerType.HOVER:
 					(currentInspectorLayer.inspectable as IInspectableComponent).OnHoverExit();
@@ -333,7 +282,7 @@ public class InspectorUIComponent : MonoBehaviour
 		}
 
 		// If the new layer is hover or select, we need to show that we're now hovering or selecting.
-		switch(topmostLayer.layer)
+		switch(topmostLayer.LayerType)
 		{
 			case InspectorLayerType.HOVER:
 				(topmostLayer.inspectable as IInspectableComponent).OnHoverEnter();

@@ -2175,6 +2175,7 @@ GameObject:
   - component: {fileID: 1836921260}
   - component: {fileID: 1836921259}
   - component: {fileID: 1836921261}
+  - component: {fileID: 1836921262}
   m_Layer: 5
   m_Name: InspectorUI
   m_TagString: Untagged
@@ -2244,6 +2245,20 @@ MonoBehaviour:
   OnSelectEnd:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1836921262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836921258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f13ea23f96fc8d4cb3897b11c18b58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildManager: {fileID: 159337139}
+  inspector: {fileID: 1836921261}
 --- !u!1 &1841248160
 GameObject:
   m_ObjectHideFlags: 0

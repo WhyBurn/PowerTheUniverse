@@ -27,7 +27,7 @@ public class BuildMenuUIComponent : MonoBehaviour
 
 	private IBuildUIMenuElement[] displayingMenuElements;
 
-	private Dictionary<int, InspectorUIComponent.InspectorLayer> activeLayers = new Dictionary<int, InspectorUIComponent.InspectorLayer>();
+	private Dictionary<int, InspectorLayer> activeLayers = new Dictionary<int, InspectorLayer>();
 
 	private void Awake()
 	{
@@ -159,7 +159,7 @@ public class BuildMenuUIComponent : MonoBehaviour
 		if (!(element is IInspectable))
 			return;
 
-		var layer = inspector.AddLayer(element as IInspectable, InspectorUIComponent.InspectorLayerType.UI_HOVER);
+		var layer = inspector.AddLayer(element as IInspectable, InspectorLayerType.UI_HOVER);
 
 		activeLayers[id] = layer;
 	}
