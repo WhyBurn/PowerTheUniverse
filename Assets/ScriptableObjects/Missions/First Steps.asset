@@ -12,35 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83697e6c3f63ccf4f90e9a03263812af, type: 3}
   m_Name: First Steps
   m_EditorClassIdentifier: 
-  startingCash: 2000
-  cashGoal: 700
+  startingCash: 2500
+  cashGoal: 850
   goalTimes: b400000068010000e00100000c030000
   missionName: First Steps
   startingScience: 0
   startingBuildings:
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: 42400773a1995a94289aedfbc563f365, type: 2}
+  - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
+  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
+  - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
   - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
   - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
-  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
   - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
   - {fileID: 11400000, guid: 1b7b3b79ce7b0ff4fbc884f90dab62eb, type: 2}
   - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
-  - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
   - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
-  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
   - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
   - {fileID: 11400000, guid: 3aff652b90fee664b90729cd7c1ff649, type: 2}
-  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
   - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
   - {fileID: 11400000, guid: 42400773a1995a94289aedfbc563f365, type: 2}
-  - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
-  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
-  - {fileID: 11400000, guid: 42400773a1995a94289aedfbc563f365, type: 2}
-  - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
-  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
-  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
-  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
-  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
-  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
   tutorialScene: 
   hasPrereq: 0
   prereqMission: 

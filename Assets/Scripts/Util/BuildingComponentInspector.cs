@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 
 #if UNITY_EDITOR
-[CustomEditor(typeof(BuildingComponent))]
+[CustomEditor(typeof(BuildingComponent)), CanEditMultipleObjects]
 public class BuildingComponentInspector : Editor
 {
     public override void OnInspectorGUI()
