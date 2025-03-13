@@ -9,7 +9,7 @@ using UnityEngine.UI;
 // DON'T EVER DO THIS FOR ANY UIDOCUMENT. USE style.display = DisplayStyles.None!!!
 public class PlanetHoverResourcesComponent : WorldToScreenUIComponent
 {
-	[SerializeField] private InspectorUIComponent inspector;
+	[SerializeField] private SelectionComponent selection;
 	private SpecialResourcesContainerUIBinding resourcesBinding;
 
 	private PlanetComponent currentPlanet = null;
@@ -27,10 +27,10 @@ public class PlanetHoverResourcesComponent : WorldToScreenUIComponent
 		resourcesBinding = new SpecialResourcesContainerUIBinding(specialResourcesUIDocument.rootVisualElement);
 
 		// When selections and hovers are made / done, update the resources container and show / hide.
-		inspector.OnHoverEnter.AddListener(Inspector_OnHoverEnter);
-		inspector.OnSelectStart.AddListener(Inspector_OnSelectStart);
-		inspector.OnHoverExit.AddListener(Inspector_OnHoverExit);
-		inspector.OnSelectEnd.AddListener(Inspector_OnSelectEnd);
+		selection.OnHoverEnter.AddListener(Inspector_OnHoverEnter);
+		selection.OnSelectStart.AddListener(Inspector_OnSelectStart);
+		selection.OnHoverExit.AddListener(Inspector_OnHoverExit);
+		selection.OnSelectEnd.AddListener(Inspector_OnSelectEnd);
 	}
 
 	protected override void Start()

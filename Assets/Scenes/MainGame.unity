@@ -1943,7 +1943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraMovementComponent: {fileID: 1841248165}
   selectionCursor: {fileID: 191995373}
-  inspector: {fileID: 1836921261}
+  selection: {fileID: 2235444833569440087}
   gameController: {fileID: 164819399}
   pauseManager: {fileID: 1946576280}
   minimap: {fileID: 545049671}
@@ -2232,19 +2232,6 @@ MonoBehaviour:
   collapseButtonMenuOpened: {fileID: -1368689051005213235, guid: e094b38c1cb1966408973485dc4d04ab, type: 3}
   collapseButtonMenuClosed: {fileID: 3785482913512300008, guid: d4283c40e4fba7c4f83a041ae837150c, type: 3}
   gameController: {fileID: 164819399}
-  selectionCursor: {fileID: 191995373}
-  OnHoverEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHoverExit:
-    m_PersistentCalls:
-      m_Calls: []
-  OnSelectStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnSelectEnd:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1836921262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2622,6 +2609,82 @@ MonoBehaviour:
   buildColor: {r: 0.8117647, g: 0.38039216, b: 0.11372549, a: 1}
   demolishColor: {r: 0.8117647, g: 0.13725491, b: 0.11372549, a: 1}
   moveColor: {r: 0.113029435, g: 0.5082584, b: 0.7987421, a: 1}
+--- !u!1001 &2235444833569440086
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5319856060530830774, guid: 749838add523fc74fa78af554be377c4, type: 3}
+      propertyPath: cursor
+      value: 
+      objectReference: {fileID: 191995373}
+    - target: {fileID: 5319856060530830774, guid: 749838add523fc74fa78af554be377c4, type: 3}
+      propertyPath: inspector
+      value: 
+      objectReference: {fileID: 1836921261}
+    - target: {fileID: 8005079349748368580, guid: 749838add523fc74fa78af554be377c4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.087687
+      objectReference: {fileID: 0}
+    - target: {fileID: 8005079349748368580, guid: 749838add523fc74fa78af554be377c4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7315547
+      objectReference: {fileID: 0}
+    - target: {fileID: 8005079349748368580, guid: 749838add523fc74fa78af554be377c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.3439558
+      objectReference: {fileID: 0}
+    - target: {fileID: 8005079349748368580, guid: 749838add523fc74fa78af554be377c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8005079349748368580, guid: 749838add523fc74fa78af554be377c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8005079349748368580, guid: 749838add523fc74fa78af554be377c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8005079349748368580, guid: 749838add523fc74fa78af554be377c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8005079349748368580, guid: 749838add523fc74fa78af554be377c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8005079349748368580, guid: 749838add523fc74fa78af554be377c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8005079349748368580, guid: 749838add523fc74fa78af554be377c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586208949991889846, guid: 749838add523fc74fa78af554be377c4, type: 3}
+      propertyPath: m_Name
+      value: Selection
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 749838add523fc74fa78af554be377c4, type: 3}
+--- !u!114 &2235444833569440087 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5319856060530830774, guid: 749838add523fc74fa78af554be377c4, type: 3}
+  m_PrefabInstance: {fileID: 2235444833569440086}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec34cc36c3a5d64e872d51f08671009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2882133585228324370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2695,6 +2758,10 @@ PrefabInstance:
       propertyPath: inspector
       value: 
       objectReference: {fileID: 1836921261}
+    - target: {fileID: 7421735967822395164, guid: eb8408baf50089147901bc6d854da5b2, type: 3}
+      propertyPath: selection
+      value: 
+      objectReference: {fileID: 2235444833569440087}
     - target: {fileID: 7530713065919641095, guid: eb8408baf50089147901bc6d854da5b2, type: 3}
       propertyPath: m_Name
       value: PlanetResources
@@ -2949,3 +3016,4 @@ SceneRoots:
   - {fileID: 1305180943}
   - {fileID: 159256418}
   - {fileID: 1792678108}
+  - {fileID: 2235444833569440086}

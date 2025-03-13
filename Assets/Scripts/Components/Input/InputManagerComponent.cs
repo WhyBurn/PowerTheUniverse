@@ -24,7 +24,7 @@ public class InputManagerComponent : MonoBehaviour
 
 	[SerializeField] private CameraMovementComponent cameraMovementComponent;
 	[SerializeField] private SelectionCursorComponent selectionCursor;
-	[SerializeField] private InspectorUIComponent inspector;
+	[SerializeField] private SelectionComponent selection;
 	[SerializeField] private GameController gameController;
 	[SerializeField] private PauseManager pauseManager;
 	[SerializeField] private MinimapComponent minimap;
@@ -138,13 +138,13 @@ public class InputManagerComponent : MonoBehaviour
 		// Select the hovered object.
 		if (acceptAction.WasPerformedThisFrame())
 		{
-			inspector.TrySelect();
+			selection.CursorSelectThisUpdate();
 		}
 
 		// Get rid of the selected object (if there is one).
 		if (cancelAction.WasPerformedThisFrame())
 		{
-			inspector.FreeSelect();
+			selection.ClearSelection();
 		}
 	}
 
