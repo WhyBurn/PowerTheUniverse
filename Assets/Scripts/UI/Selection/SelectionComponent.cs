@@ -91,7 +91,7 @@ public class SelectionComponent : MonoBehaviour
 		UpdateHover(ref changes);
 		UpdateSelect(ref changes);
 
-		if (changes.AnyChange)
+		if (changes.AnyChange && !muted)
 			BroadcastChange(changes);
 	}
 
@@ -210,7 +210,7 @@ public class SelectionComponent : MonoBehaviour
 
 		currentSelection = toSelect;
 
-		if (broadcastChange)
+		if (broadcastChange && ! muted)
 		{
 			BroadcastChange(new SelectionChanges
 			{
@@ -303,11 +303,15 @@ public class SelectionComponent : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Check whether hover or selection have been destroyed (e.g. planet collision).
+	/// </summary>
+	/// <param name="changes">Refernce to changes that are updated to reflect destroyed hover or selection objects.</param>
 	private void ValidateHoverAndSelection(ref SelectionChanges changes)
 	{
 		if (IsDestroyed(currentHover))
 		{
-			if (currentSelection != null)
+			if (currentSelection == null)
 				changes.stopHovering = currentHover;
 			currentHover = null;
 		}
@@ -315,6 +319,12 @@ public class SelectionComponent : MonoBehaviour
 		if (IsDestroyed(currentSelection))
 		{
 			changes.stopSelection = currentSelection;
+
+			// If we're hovering over something, notify that it's being hovered over now that
+			// the selection has been destroyed.
+			if (currentHover != null)
+				changes.startHovering = true;
+
 			currentSelection = null;
 		}
 	}
