@@ -241,6 +241,12 @@ public class SelectionComponent : MonoBehaviour
 		// Note that if currentHover or currentSelection are null,
 		// their boolean checks should be false. But, currentHover and currentSelection
 		// can be destroyed components that are normally considered null.
+		if (changes.BroadcastStopSelection)
+		{
+			if (!IsDestroyed(changes.stopSelection))
+				changes.stopSelection.OnSelectEnd();
+			OnSelectEnd?.Invoke(changes.stopSelection);
+		}
 		if (changes.BroadcastStopHovering)
 		{
 			if (! IsDestroyed(changes.stopHovering))
@@ -252,12 +258,6 @@ public class SelectionComponent : MonoBehaviour
 			if (! IsDestroyed(currentHover))
 				currentHover.OnHoverEnter();
 			OnHoverEnter?.Invoke(currentHover);
-		}
-		if (changes.BroadcastStopSelection)
-		{
-			if (! IsDestroyed(changes.stopSelection))
-				changes.stopSelection.OnSelectEnd();
-			OnSelectEnd?.Invoke(changes.stopSelection);
 		}
 		if (changes.BroadcastStartSelection)
 		{

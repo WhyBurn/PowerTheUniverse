@@ -11,16 +11,6 @@ using AstralAvarice.Utils.Layers;
 [RequireComponent(typeof(UIDocument))]
 public class InspectorUIComponent : MonoBehaviour
 {
-	// In ascending order of precedence:
-	// DEFAULT: Nothing is being hovered over. No build mode is set.
-	// HOVER: The player is hovering over an inspectable object. No build mode is set.
-	// SELECT: The player clicked on an inspectable object. No build mode is set.
-	// BUILD_MODE: The player is in a particular build mode.
-	// UI_HOVER: The player is hovering over some UI.
-
-	// Layers that cannot be used by outside scripts.
-	private const int LOCKED_LAYERS = (int) (InspectorLayerType.DEFAULT);
-
 	private UIDocument uiDocument;
 	
 	private Button collapseButton;
@@ -30,9 +20,7 @@ public class InspectorUIComponent : MonoBehaviour
 	[SerializeField] private Sprite collapseButtonMenuOpened;
 	[SerializeField] private Sprite collapseButtonMenuClosed;
 
-	[SerializeField] private GameController gameController;
-
-	private SortedSet<InspectorLayer> activeInspectorLayers = new SortedSet<InspectorLayer>();
+	private LayerContainer<InspectorLayer> inspectorLayers = new LayerContainer<InspectorLayer>();
 
 
 	private InspectorLayer currentInspectorLayer;
@@ -46,7 +34,14 @@ public class InspectorUIComponent : MonoBehaviour
 		uiDocument = GetComponent<UIDocument>();
 
 		// If there nothing else to inspect, by default show the default inspector.
-		activeInspectorLayers.Add(new InspectorLayer(new DefaultInspector(), InspectorLayerType.DEFAULT));
+		inspectorLayers.Add(new InspectorLayer(new DefaultInspector(), InspectorLayerType.DEFAULT));
+		MarkForUIUpdate();
+
+		inspectorLayers.OnTopLayerChanged.AddListener(InspectorLayer_OnTopLayerChanged);
+	}
+
+	private void InspectorLayer_OnTopLayerChanged(InspectorLayer oldTop, InspectorLayer newTop)
+	{
 		MarkForUIUpdate();
 	}
 
@@ -71,32 +66,18 @@ public class InspectorUIComponent : MonoBehaviour
 
 	public InspectorLayer AddLayer(IInspectable inspectable, int layer)
 	{
-		if ((LOCKED_LAYERS & layer) != 0)
-			throw new ArgumentException($"Could not externally create an inspector layer from layer {layer}. This layer is managed by the InspectorUIComponent itself.");
-
 		InspectorLayer newLayerObj = new InspectorLayer(inspectable, (InspectorLayerType) layer);
-		activeInspectorLayers.Add(newLayerObj);
-		MarkForUIUpdate();
+		inspectorLayers.Add(newLayerObj);
 		return newLayerObj;
 	}
 
 	public bool RemoveLayer(InspectorLayer toRemove)
 	{
-		if ((LOCKED_LAYERS & (int) toRemove.LayerType) != 0)
-			throw new ArgumentException($"Could not externally remove an inspector layer from layer {toRemove.LayerType}. This layer is managed by the InspectorUIComponent itself.");
-
-		bool didRemove = activeInspectorLayers.Remove(toRemove);
-		if(didRemove)
-        {
-			MarkForUIUpdate();
-        }
-		return didRemove;
+		return inspectorLayers.Remove(toRemove);
 	}
 
 	private void CollapseButton_OnClick(ClickEvent evt)
 	{
-		// TODO: Change collapse button graphic.
-
 		switch (collapsableInspectorContent.style.display.value)
 		{
 			case DisplayStyle.None:
@@ -123,7 +104,7 @@ public class InspectorUIComponent : MonoBehaviour
 	private void UpdateTopmostInspectorLayer()
 	{
 		// Assume topmostLayer is never null.
-		InspectorLayer topmostLayer = activeInspectorLayers.Max;
+		InspectorLayer topmostLayer = inspectorLayers.Max;
 
 		// If the topmost inspectable has not changed, don't change the UI.
 		if (currentInspectorLayer != null &&

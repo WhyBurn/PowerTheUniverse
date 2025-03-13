@@ -26,6 +26,11 @@ namespace AstralAvarice.Utils.Layers
 		public UnityEvent<LayerType, LayerType> OnTopLayerChanged = new UnityEvent<LayerType, LayerType>();
 
 		/// <summary>
+		/// Get the topmost layer. default(LayerType) if empty.
+		/// </summary>
+		public LayerType Max { get => layers.Max; }
+
+		/// <summary>
 		/// Get whether two layers are equal.
 		/// Necessary because LayerType == LayerType does not compile.
 		/// Checks for null.
@@ -49,7 +54,7 @@ namespace AstralAvarice.Utils.Layers
 		/// </summary>
 		/// <param name="layer">The layer to add to the sorted set.</param>
 		/// <returns>The return value of SortedSet.Add.</returns>
-		private bool Add(LayerType layer)
+		public bool Add(LayerType layer)
 		{
 			LayerType oldTop = layers.Max;
 
@@ -69,7 +74,7 @@ namespace AstralAvarice.Utils.Layers
 		/// </summary>
 		/// <param name="layer">The layer to remove from the sorted set.</param>
 		/// <returns>The return value of SortedSet.Remove.</returns>
-		private bool Remove(LayerType layer)
+		public bool Remove(LayerType layer)
 		{
 			LayerType oldTop = layers.Max;
 
