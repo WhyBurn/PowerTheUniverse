@@ -2625,6 +2625,10 @@ PrefabInstance:
       propertyPath: inspector
       value: 
       objectReference: {fileID: 1836921261}
+    - target: {fileID: 7173019042472090943, guid: 749838add523fc74fa78af554be377c4, type: 3}
+      propertyPath: buildManager
+      value: 
+      objectReference: {fileID: 159337139}
     - target: {fileID: 8005079349748368580, guid: 749838add523fc74fa78af554be377c4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.087687

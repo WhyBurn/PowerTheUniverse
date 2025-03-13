@@ -72,9 +72,12 @@ public class InputManagerComponent : MonoBehaviour
 
 	private void Update()
 	{
+		bool startInBuildState = BuildManagerComponent.Instance.IsInBuildState();
+
 		UpdateSelectionCursor();
 		UpdateBuildManager();
-		UpdateInspector();
+		if (! startInBuildState)
+			UpdateSelection();
 		UpdateCameraMovement();
 		UpdateGameController();
 		UpdatePauseManager();
@@ -121,7 +124,7 @@ public class InputManagerComponent : MonoBehaviour
 		}
 	}
 
-	private void UpdateInspector()
+	private void UpdateSelection()
 	{
 		// Don't take input whilst the game is paused.
 		if (gameController.GamePaused)

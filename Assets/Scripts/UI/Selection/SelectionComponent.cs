@@ -356,4 +356,60 @@ public class SelectionComponent : MonoBehaviour
 
 		return foundInspectableCollider == null ? null : foundInspectableCollider.GetComponentInParent<IInspectableComponent>();
 	}
+
+	/// <summary>
+	/// Stops broadcasts of selection changes and tells the current selected / hovered
+	/// objects that they are no longer being hovered over.
+	/// 
+	/// Does not prevent new Select() or SelectThisUpdate() calls from modifying
+	/// currentSelection, or UpdateHover() from modifying currentHover, but does prevent
+	/// broadcasting changes.
+	/// 
+	/// Does not set currentSelection to null. To mute and clear selection,
+	/// call Mute() and ClearSelection().
+	/// </summary>
+	public void Mute()
+	{
+		// If already muted, nothing changes.
+		if (muted)
+			return;
+
+		muted = true;
+
+		bool hasHover = currentHover != null;
+		bool hasSelection = currentSelection != null;
+
+		BroadcastChange(new SelectionChanges
+		{
+			stopHovering = (hasHover && ! hasSelection) ? currentHover : null,
+			startHovering = false,
+			stopSelection = (hasSelection) ? currentSelection : null,
+			startSelection = false
+		});
+		
+	}
+
+	/// <summary>
+	/// Resumes broadcasts of selection changes. Notifies the current selected / hovered
+	/// objects that they're being hovered / selected.
+	/// </summary>
+	public void UnMute()
+	{
+		// If not muted, nothing changes.
+		if (!muted)
+			return;
+		
+		muted = false;
+
+		bool hasHover = currentHover != null;
+		bool hasSelection = currentSelection != null;
+
+		BroadcastChange(new SelectionChanges
+		{
+			stopHovering = null,
+			startHovering = hasHover && ! hasSelection,
+			stopSelection = null,
+			startSelection = hasSelection
+		});
+	}
 }
