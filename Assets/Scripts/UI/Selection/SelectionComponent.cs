@@ -121,8 +121,6 @@ public class SelectionComponent : MonoBehaviour
 		IInspectableComponent newHover = GetCursorInspectable();
 		if (currentHover != newHover)
 		{
-			Debug.Log($"Old Hover was {currentHover} new hover is {newHover}.");
-
 			// Only broadcast hover changes whilst there is no selection.
 			if (currentSelection == null)
 			{
@@ -245,28 +243,24 @@ public class SelectionComponent : MonoBehaviour
 		// can be destroyed components that are normally considered null.
 		if (changes.BroadcastStopHovering)
 		{
-			Debug.Log($"Stopped hovering on {changes.stopHovering}.");
 			if (! IsDestroyed(changes.stopHovering))
 				changes.stopHovering.OnHoverExit();
 			OnHoverExit?.Invoke(changes.stopHovering);
 		}
 		if (changes.BroadcastStartHovering)
 		{
-			Debug.Log($"Started hovering on {currentHover}.");
 			if (! IsDestroyed(currentHover))
 				currentHover.OnHoverEnter();
 			OnHoverEnter?.Invoke(currentHover);
 		}
 		if (changes.BroadcastStopSelection)
 		{
-			Debug.Log($"Stopped selecting {changes.stopSelection}.");
 			if (! IsDestroyed(changes.stopSelection))
 				changes.stopSelection.OnSelectEnd();
 			OnSelectEnd?.Invoke(changes.stopSelection);
 		}
 		if (changes.BroadcastStartSelection)
 		{
-			Debug.Log($"Started selecting {currentSelection}.");
 			if (! IsDestroyed(currentSelection))
 				currentSelection.OnSelectStart();
 			OnSelectStart?.Invoke(currentSelection);
