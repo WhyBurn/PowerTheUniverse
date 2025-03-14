@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 using System;
 using UnityEngine.InputSystem;
 
-namespace AstralAvarice.UI.Tooltip
+namespace AstralAvarice.UI.Tooltips
 {
 	public class TooltipComponent : MonoBehaviour
 	{

@@ -27,7 +27,6 @@ public class PtUUISettings : ScriptableObject
 	[SerializeField] private VisualTreeAsset cableInspectorUI;
 	[SerializeField] private VisualTreeAsset moveInspectorUI;
 
-
 	[Header("Selection and Outlines")]
 	[SerializeField] private Material selectOutlineMaterial;
 	[SerializeField] private Material demolishOutlineMaterial;
@@ -36,19 +35,11 @@ public class PtUUISettings : ScriptableObject
 	[SerializeField] private Sprite buildUISelectedButtonSprite;
 	[SerializeField] private Sprite buildUIDeselectedButtonSprite;
 
-	[System.Serializable]
-	public class SpecialEnergyUIData
-	{
-		[SerializeField] private Sprite icon;
-
-		public Sprite Icon { get => icon; }
-	}
-
 	[Header("Special Resources")]
-	[SerializeField] private SpecialEnergyUIData solarUIData;
-	[SerializeField] private SpecialEnergyUIData coalUIData;
-	[SerializeField] private SpecialEnergyUIData windUIData;
-	[SerializeField] private SpecialEnergyUIData geothermalUIData;
+	[SerializeField] private SpecialResourceUIData solarUIData;
+	[SerializeField] private SpecialResourceUIData coalUIData;
+	[SerializeField] private SpecialResourceUIData windUIData;
+	[SerializeField] private SpecialResourceUIData geothermalUIData;
 
 	[Header("Grid Group View")]
 	[SerializeField, ColorUsage(false, true)] private Color[] gridGroupColors;
@@ -65,6 +56,10 @@ public class PtUUISettings : ScriptableObject
 	[Header("Visualization")]
 	[SerializeField, Tooltip("Reference to the UI settings for visualization options (e.g. gravity fields & solar fields).")]
 	private VisualizationUISettings_SO visualizationSettings;
+
+	[Header("Ranks")]
+	[SerializeField, Tooltip("Mapping of rank ids to rank visuals.")]
+	private RankUIData[] rankSettings;
 
 	// Getters
 	public VisualTreeAsset DefaultInspectorUI
@@ -108,10 +103,10 @@ public class PtUUISettings : ScriptableObject
 	public Sprite BuildUISelectedButtonSprite { get => buildUISelectedButtonSprite; }
 	public Sprite BuildUIDeselectedButtonSprite { get => buildUIDeselectedButtonSprite; }
 
-	public SpecialEnergyUIData SolarUIData { get => solarUIData; }
-	public SpecialEnergyUIData CoalUIData { get => coalUIData; }
-	public SpecialEnergyUIData WindUIData { get => windUIData; }
-	public SpecialEnergyUIData GeothermalUIData { get => geothermalUIData; }
+	public SpecialResourceUIData SolarUIData { get => solarUIData; }
+	public SpecialResourceUIData CoalUIData { get => coalUIData; }
+	public SpecialResourceUIData WindUIData { get => windUIData; }
+	public SpecialResourceUIData GeothermalUIData { get => geothermalUIData; }
 
 	public Color[] GridGroupColors { get => gridGroupColors; }
 
@@ -123,9 +118,11 @@ public class PtUUISettings : ScriptableObject
 
 	public VisualizationUISettings_SO VisualizationSettings { get => visualizationSettings; }
 
-	public SpecialEnergyUIData GetSpecialResourceUIData(ResourceType resourceType)
+	public RankUIData[] RankSettings => rankSettings;
+
+	public SpecialResourceUIData GetSpecialResourceUIData(ResourceType resourceType)
 	{
-		SpecialEnergyUIData uiData = null;
+		SpecialResourceUIData uiData = null;
 
 		switch(resourceType)
 		{

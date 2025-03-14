@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using AstralAvarice.Utils.Layers;
 
-namespace AstralAvarice.UI.Tooltip
+namespace AstralAvarice.UI.Tooltips
 {
 	/// <summary>
 	/// Interface for interacting with tooltip layers.

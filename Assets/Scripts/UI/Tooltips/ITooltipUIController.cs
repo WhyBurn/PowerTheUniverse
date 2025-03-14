@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace AstralAvarice.UI.Tooltip
+namespace AstralAvarice.UI.Tooltips
 {
 	/// <summary>
 	/// Interface for objects that control what is displayed in the

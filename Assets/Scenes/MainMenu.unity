@@ -623,6 +623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 454164190}
   - component: {fileID: 454164189}
+  - component: {fileID: 454164191}
   m_Layer: 0
   m_Name: MissionSelecter
   m_TagString: Untagged
@@ -664,6 +665,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &454164191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454164188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92488b10360b1e4419e8e337cdeee9a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameData: {fileID: 11400000, guid: cc5cf6fbd626c8547bd726b0fa4b0eb0, type: 2}
+  missionSelectDocument: {fileID: 454164189}
+  missionButtonPrefab: {fileID: 9197481963319205126, guid: 089c9e43ee88121449dca560d3f23bb0, type: 3}
+  tooltip: {fileID: 1472481592}
+  tooltipLayerFactory: {fileID: 11400000, guid: bdff575c5bba6c54494a0efc060555c5, type: 2}
+  OnPlayerClosed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &500337891
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,10 +853,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: cc5cf6fbd626c8547bd726b0fa4b0eb0, type: 2}
   mainMenuDocument: {fileID: 638269462}
-  missionSelectDocument: {fileID: 454164189}
+  missionUI: {fileID: 454164191}
   settingsDocument: {fileID: 790142433}
   creditsDocument: {fileID: 1028712846}
-  mouseHoverDocument: {fileID: 1472481590}
   missionButtonPrefab: {fileID: 9197481963319205126, guid: 089c9e43ee88121449dca560d3f23bb0, type: 3}
   audioMixer: {fileID: 24100000, guid: 651c72aa38f366b4185571ed3ef58479, type: 2}
   missionRankSprites:
@@ -845,6 +865,7 @@ MonoBehaviour:
   - {fileID: -5943403573417048326, guid: 1446aaa8309675e4194744b7f932724e, type: 3}
   - {fileID: 3182304583510767899, guid: b979eabd799852649a6788c9c90168d1, type: 3}
   - {fileID: 6824925376817469756, guid: 2b91b36df40249646a49952429cb07cd, type: 3}
+  tooltip: {fileID: 0}
 --- !u!1 &702176660
 GameObject:
   m_ObjectHideFlags: 0
