@@ -1,6 +1,4 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/StatusStyleSheet.uss?fileID=7433441132597879392&amp;guid=d6feace57b9d8de46bf003c249dd4771&amp;type=3#StatusStyleSheet" />
-    <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
-        <engine:Label text="1000/1000" name="GridPowerLabel" class="statsText" style="background-color: rgba(49, 42, 82, 0.63); color: rgb(255, 255, 255); align-self: flex-start; font-size: 35px;" />
-    </engine:VisualElement>
+    <engine:VisualElement picking-mode="Ignore" name="TooltipContainer" style="flex-grow: 0; flex-shrink: 1; align-self: flex-start; background-color: rgba(49, 42, 82, 0.63); padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;" />
 </engine:UXML>

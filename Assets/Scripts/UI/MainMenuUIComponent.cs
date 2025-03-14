@@ -23,7 +23,6 @@ public class MainMenuUIComponent : MonoBehaviour
     private Slider masterVolumeSlider;
     private Slider musicVolumeSlider;
     private Slider sfxVolumeSlider;
-    private Label tooltipLabel;
     private MissionData hoveredMission;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -70,9 +69,6 @@ public class MainMenuUIComponent : MonoBehaviour
         audioMixer.SetFloat("SFX", sfxVolume);
         sfxVolumeSlider.RegisterValueChangedCallback<float>(SFXVolumeChanged);
 
-        tooltipLabel = mouseHoverDocument.rootVisualElement.Q<Label>("GridPowerLabel");
-        tooltipLabel.style.display = DisplayStyle.None;
-
         missionSelectDocument.sortingOrder = 0;
 		missionSelectDocument.rootVisualElement.style.display = DisplayStyle.None;
 
@@ -91,17 +87,6 @@ public class MainMenuUIComponent : MonoBehaviour
 		Time.timeScale = 1f;
 		Time.fixedDeltaTime = Time.fixedUnscaledDeltaTime;
 	}
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(hoveredMission != null)
-        {
-            Vector2 mousePos = GetMousePosition();
-            tooltipLabel.style.left = mousePos.x + (20 * Screen.height / 1080);
-            tooltipLabel.style.top = 1080 - mousePos.y;
-        }
-    }
 
     public void PopulateMissions()
     {
@@ -228,8 +213,9 @@ public class MainMenuUIComponent : MonoBehaviour
 
     private void MissionButtonOnHoverStart(PointerEnterEvent evt, MissionData mission)
     {
-        tooltipLabel.style.display = DisplayStyle.Flex;
-        tooltipLabel.text = GetMissionTooltipText(mission);
+		/// TODO: Notify Tooltip.
+        //tooltipLabel.style.display = DisplayStyle.Flex;
+        //tooltipLabel.text = GetMissionTooltipText(mission);
         hoveredMission = mission;
     }
 
@@ -238,7 +224,8 @@ public class MainMenuUIComponent : MonoBehaviour
         if(hoveredMission == mission)
         {
             hoveredMission = null;
-            tooltipLabel.style.display = DisplayStyle.None;
+            // TODO: Notify Tooltip
+			//tooltipLabel.style.display = DisplayStyle.None;
         }
     }
 
@@ -262,12 +249,5 @@ public class MainMenuUIComponent : MonoBehaviour
         {
             return ("Not completed");
         }
-    }
-
-    public Vector2 GetMousePosition()
-    {
-        Vector2 position = Mouse.current.position.ReadValue();
-        Vector2 adjustedPosition = new Vector2(position.x * 1080 / Screen.height, position.y * 1080 / Screen.height);
-        return (adjustedPosition);
     }
 }

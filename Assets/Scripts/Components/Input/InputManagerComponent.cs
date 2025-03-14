@@ -92,7 +92,7 @@ public class InputManagerComponent : MonoBehaviour
 			return;
 
 		// Convert the mouse position to a position in world space.
-		Vector2 mousePositionWorldSpace = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		Vector2 mousePositionWorldSpace = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
 		selectionCursor.SetPosition(mousePositionWorldSpace);
 		selectionCursor.QueryHovering();
@@ -162,7 +162,7 @@ public class InputManagerComponent : MonoBehaviour
 		
 		
 
-		cameraMovementComponent.SetHoverInput(Input.mousePosition);
+		cameraMovementComponent.SetHoverInput(Mouse.current.position.ReadValue());
 		cameraMovementComponent.SetPanningInput(panAction.IsPressed());
 
 

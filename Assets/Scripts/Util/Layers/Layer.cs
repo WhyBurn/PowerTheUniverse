@@ -19,7 +19,7 @@ namespace AstralAvarice.Utils.Layers
 	/// </summary>
 	public class Layer : IComparable<Layer>
 	{
-		public readonly int priority;
+		[SerializeField] public readonly int priority;
 
 		public Layer(int priority)
 		{

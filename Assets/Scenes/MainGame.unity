@@ -129,8 +129,10 @@ GameObject:
   m_Component:
   - component: {fileID: 159256418}
   - component: {fileID: 159256417}
+  - component: {fileID: 159256419}
+  - component: {fileID: 159256420}
   m_Layer: 5
-  m_Name: GridPowerUI
+  m_Name: Tooltip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,6 +172,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &159256419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159256416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb8ea87e2266a64b8c2616315a32d42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDocument1: {fileID: 876278617}
+  uiDocument2: {fileID: 1836921259}
+--- !u!114 &159256420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159256416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a214c9e6b85e4074096b6221379f5df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelDocument: {fileID: 876278617}
 --- !u!1 &159337138
 GameObject:
   m_ObjectHideFlags: 0
@@ -2231,7 +2260,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseButtonMenuOpened: {fileID: -1368689051005213235, guid: e094b38c1cb1966408973485dc4d04ab, type: 3}
   collapseButtonMenuClosed: {fileID: 3785482913512300008, guid: d4283c40e4fba7c4f83a041ae837150c, type: 3}
-  gameController: {fileID: 164819399}
 --- !u!114 &1836921262
 MonoBehaviour:
   m_ObjectHideFlags: 0
