@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 
-public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableComponent
+public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableComponent, IGridGroupElement
 {
 	[SerializeField] private BoxCollider2D boxCollider;
 	[SerializeField] private Transform cableConnectionPoint;

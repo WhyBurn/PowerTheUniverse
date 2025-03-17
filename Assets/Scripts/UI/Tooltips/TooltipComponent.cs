@@ -167,20 +167,20 @@ namespace AstralAvarice.UI.Tooltips
 			aboveMouse = false;
 			leftOfMouse = false;
 
-			// If the top is over halway down the screen, check whether we would run off the screen and move above.
-			bool pastVerticalHalf = documentPosition.y > Screen.height / 2;
-			bool bottomOverflow = positionWithMargin.y + movingElement.resolvedStyle.height > Screen.height;
-			if (pastVerticalHalf && bottomOverflow)
-			{
-				positionWithMargin.y = documentPosition.y - margin.y - movingElement.resolvedStyle.height;
-			}
-
 			// If the left is over halway down the screen, check whether we would run off the screen and move to the left.
 			bool pastHorizontalHalf = documentPosition.x > Screen.width / 2;
 			bool rightOverflow = positionWithMargin.x + movingElement.resolvedStyle.width > Screen.width;
 			if (pastHorizontalHalf && rightOverflow)
 			{
 				positionWithMargin.x = documentPosition.x - margin.x - movingElement.resolvedStyle.width;
+			}
+
+			// If the top is over halway down the screen, check whether we would run off the screen and move above.
+			bool pastVerticalHalf = documentPosition.y > Screen.height / 2;
+			bool bottomOverflow = positionWithMargin.y + movingElement.resolvedStyle.height > Screen.height;
+			if (pastVerticalHalf && bottomOverflow)
+			{
+				positionWithMargin.y = documentPosition.y - margin.y - movingElement.resolvedStyle.height;
 			}
 
 			return positionWithMargin;

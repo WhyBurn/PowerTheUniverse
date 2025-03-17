@@ -89,8 +89,8 @@ GameObject:
   - component: {fileID: 2223137515787140783}
   - component: {fileID: 7757306035987977248}
   - component: {fileID: 5373616024869232049}
-  - component: {fileID: 289729640491052678}
   - component: {fileID: 7468987602184626489}
+  - component: {fileID: 2533088107991718847}
   m_Layer: 0
   m_Name: Cable
   m_TagString: Untagged
@@ -156,20 +156,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toToggleRenderers:
   - {fileID: 1081493832526688351}
---- !u!114 &289729640491052678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5726402047846220235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b459e34967b61e41a9a796320bf4f84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderers:
-  - {fileID: 1081493832526688351}
 --- !u!114 &7468987602184626489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +170,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimapRenderer: {fileID: 7617324272697166566}
   rendererToMatch: {fileID: 1081493832526688351}
+--- !u!114 &2533088107991718847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5726402047846220235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803c078989f976b47bb1024b1babcefe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 1081493832526688351}
 --- !u!1 &9005126059149680288
 GameObject:
   m_ObjectHideFlags: 0

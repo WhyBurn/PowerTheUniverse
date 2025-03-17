@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using werignac.Utils;
 
-public class CableComponent : MonoBehaviour, IDemolishable
+public class CableComponent : MonoBehaviour, IDemolishable, IGridGroupElement
 {
 	[SerializeField] private BuildingComponent startBuilding;
 	[SerializeField] private BuildingComponent endBuilding;

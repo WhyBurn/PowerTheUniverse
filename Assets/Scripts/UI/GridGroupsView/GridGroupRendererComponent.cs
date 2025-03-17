@@ -1,10 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public abstract class GridGroupRendererComponent : MonoBehaviour
+public class GridGroupRendererComponent : MonoBehaviour
 {
+	private IGridGroupElement gridGroupElement;
 
 	[SerializeField] protected Renderer[] renderers;
+
+	private void Awake()
+	{
+		gridGroupElement = GetComponentInParent<IGridGroupElement>();
+	}
 
 	private void LateUpdate()
 	{
@@ -25,6 +31,8 @@ public abstract class GridGroupRendererComponent : MonoBehaviour
 		}
 	}
 
-	protected abstract int GetGridGroup();
-
+	protected int GetGridGroup()
+	{
+		return gridGroupElement.GridGroup;
+	}
 }

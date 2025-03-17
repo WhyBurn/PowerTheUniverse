@@ -367,8 +367,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2511273548441317609}
   - component: {fileID: 5819657162374458015}
-  - component: {fileID: 8941912774516140303}
   - component: {fileID: 7735193017672483896}
+  - component: {fileID: 3792250367373443552}
   m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
@@ -407,20 +407,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toToggleRenderers:
   - {fileID: 8925029825920761906}
---- !u!114 &8941912774516140303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7708532822011176026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93699cd690b5bab4a9e5275572b92265, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderers:
-  - {fileID: 8925029825920761906}
 --- !u!114 &7735193017672483896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,3 +421,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimapRenderer: {fileID: 5026217500201427530}
   rendererToMatch: {fileID: 8925029825920761906}
+--- !u!114 &3792250367373443552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7708532822011176026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803c078989f976b47bb1024b1babcefe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 8925029825920761906}

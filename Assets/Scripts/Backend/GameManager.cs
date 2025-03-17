@@ -484,60 +484,82 @@ public class GameManager
         return (Mathf.CeilToInt(((float)building.ResourcesProvided) / building.Data.resourceAmountRequired * building.Data.powerProduced));
     }
 
-    public int GetGroupPowerProduced(Building groupBuilding)
-    {
-        HashSet<Building> buildingsSeen = new HashSet<Building>();
-        List<Building> connectedBuildings = new List<Building>();
-        int totalPower = 0;
-        buildingsSeen.Add(groupBuilding);
-        connectedBuildings.Add(groupBuilding);
-        while (connectedBuildings.Count > 0)
-        {
-            Building building = connectedBuildings[0];
-            connectedBuildings.RemoveAt(0);
-            if (building.Data.buildingType == BuildingType.PowerProducer)
-            {
-                totalPower += GetPower(building);
-            }
-            for (int i = 0; i < building.NumConnected; ++i)
-            {
-                Building connectedBuilding = building.GetConnectedBuilding(i);
-                if (!buildingsSeen.Contains(connectedBuilding))
-                {
-                    buildingsSeen.Add(connectedBuilding);
-                    connectedBuildings.Add(connectedBuilding);
-                }
-            }
-        }
-        return (totalPower);
-    }
-    public int GetGroupPowerConsumed(Building groupBuilding)
-    {
-        HashSet<Building> buildingsSeen = new HashSet<Building>();
-        List<Building> connectedBuildings = new List<Building>();
-        int totalPower = 0;
-        buildingsSeen.Add(groupBuilding);
-        connectedBuildings.Add(groupBuilding);
-        while (connectedBuildings.Count > 0)
-        {
-            Building building = connectedBuildings[0];
-            connectedBuildings.RemoveAt(0);
-            if (building.Data.buildingType == BuildingType.PowerConsumer)
-            {
-                totalPower += building.Data.powerRequired;
-            }
-            for (int i = 0; i < building.NumConnected; ++i)
-            {
-                Building connectedBuilding = building.GetConnectedBuilding(i);
-                if (!buildingsSeen.Contains(connectedBuilding))
-                {
-                    buildingsSeen.Add(connectedBuilding);
-                    connectedBuildings.Add(connectedBuilding);
-                }
-            }
-        }
-        return (totalPower);
-    }
+	/// <summary>
+	/// Gets the grid group data for the buildings with
+	/// a given group id.
+	/// </summary>
+	/// <param name="groupId">The id of the grid group.</param>
+	/// <returns>Data about the grid group.</returns>
+	public GridGroupData GetGroupData(int groupId)
+	{
+		Building firstBuilding = GetFirstBuildingWithGroupId(groupId);
+		return GetGroupData(firstBuilding);
+	}
+
+	/// <summary>
+	/// Gets the data for the grid group that the passed building belongs to.
+	/// </summary>
+	/// <param name="groupBuilding">A building that is a member of a grid group.</param>
+	/// <returns>Data about the building's grid group.</returns>
+	public GridGroupData GetGroupData(Building groupBuilding)
+	{
+		// TODO: Instead of using DFS, maybe store the grid groups in a dictionary after performing AssignGroupIds
+		// e.g. Dictionary<int, GridGroup> gridGroups; Where GridGroup has an member
+		// Building[] GridGroup.buildings;
+		// Then in here do gridGroups[gridGroupId].
+		IEnumerable<Building> connectedBuildings = GetConnectedBuildings(groupBuilding);
+		return new GridGroupData(connectedBuildings);
+	}
+
+	/// <summary>
+	/// Finds a building with the given group id.
+	/// Throws an exception if none were found.
+	/// </summary>
+	/// <param name="groupId">The groupId to search for.</param>
+	/// <returns>The first buliding found with that groupId.</returns>
+	private Building GetFirstBuildingWithGroupId(int groupId)
+	{
+		Building foundBuilding = buildings.Find((Building building) => building.BuildingGroup == groupId);
+
+		if (foundBuilding == null)
+			throw new System.Exception($"Could not find building with group {groupId}.");
+
+		return foundBuilding;
+	}
+
+	/// <summary>
+	/// Gets all the buildings that are connected to the passed building, including
+	/// the passed building. Uses Depth-first search.
+	/// </summary>
+	/// <param name="startingBuilding">The building who is connected to other buildings that we want to fetch.</param>
+	/// <returns>A set of all the buildings that the passed building is connected to.</returns>
+	private HashSet<Building> GetConnectedBuildings(Building startingBuilding)
+	{
+		// "Visited" in DFS.
+		HashSet<Building> buildingsSeen = new HashSet<Building>();
+		// "To Visit" in DFS.
+		List<Building> connectedBuildings = new List<Building>();
+		
+		buildingsSeen.Add(startingBuilding);
+		connectedBuildings.Add(startingBuilding);
+		
+		while (connectedBuildings.Count > 0)
+		{
+			Building building = connectedBuildings[0];
+			connectedBuildings.RemoveAt(0);
+			
+			for (int i = 0; i < building.NumConnected; ++i)
+			{
+				Building connectedBuilding = building.GetConnectedBuilding(i);
+				if (!buildingsSeen.Contains(connectedBuilding))
+				{
+					buildingsSeen.Add(connectedBuilding);
+					connectedBuildings.Add(connectedBuilding);
+				}
+			}
+		}
+		return buildingsSeen;
+	}
 
     public void AssignGroupIds(Building groupBuilding, int groupId)
     {

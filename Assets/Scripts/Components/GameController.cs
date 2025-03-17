@@ -19,8 +19,8 @@ public class GameController : MonoBehaviour
 	[SerializeField] private DataSet gameDataSet;
 	[SerializeField] private UIDocument victoryDocument;
 	[SerializeField] private UIDocument defeatDocument;
-	[SerializeField] private UIDocument gridPowerDocument;
-	[SerializeField] private GridGroupViewComponent gridGroupView;
+	//[SerializeField] private UIDocument gridPowerDocument;
+	//[SerializeField] private GridGroupViewComponent gridGroupView;
 	[SerializeField] private Camera mainCamera;
 
 
@@ -117,7 +117,7 @@ public class GameController : MonoBehaviour
 		scienceIncomeLabel = statsDocument.rootVisualElement.Q("ScienceIncome") as Label;
 		timeLabel = statsDocument.rootVisualElement.Q("Time") as Label;
 		timeScaleLabel = statsDocument.rootVisualElement.Q<Label>("TimeScale");
-		gridPowerLabel = gridPowerDocument.rootVisualElement.Q<Label>("GridPowerLabel");
+		//gridPowerLabel = gridPowerDocument.rootVisualElement.Q<Label>("GridPowerLabel");
 
 		if(defeatDocument != null)
         {
@@ -196,27 +196,6 @@ public class GameController : MonoBehaviour
 			timeLabel.text = timeText;
 
 			timeScaleLabel.text = "X" + GameSpeed;
-
-			if(gridGroupView.IsShowing)
-			{
-				BuildingComponent hoveredBuilding = BuildManagerComponent.Instance.GetHoveringBuilding();
-				if(hoveredBuilding == null)
-                {
-                    gridPowerLabel.style.display = DisplayStyle.None;
-                }
-				else
-                {
-                    gridPowerLabel.style.display = DisplayStyle.Flex;
-					gridPowerLabel.text = gameManager.GetGroupPowerProduced(hoveredBuilding.BackendBuilding) + "/" + gameManager.GetGroupPowerConsumed(hoveredBuilding.BackendBuilding);
-					Vector2 mousePos = GetMousePosition();
-                    gridPowerLabel.style.left = mousePos.x + (20 * Screen.height / 1080);
-					gridPowerLabel.style.top = 1080 - mousePos.y;
-                }
-			}
-			else
-            {
-                gridPowerLabel.style.display = DisplayStyle.None;
-            }
 		}
 	}
 
@@ -695,4 +674,9 @@ public class GameController : MonoBehaviour
 		Vector2 adjustedPosition = new Vector2(position.x * 1080 / Screen.height, position.y * 1080 / Screen.height);
 		return (adjustedPosition);
     }
+
+	public GridGroupData GetGridGroupData(int gridGroupId)
+	{
+		return gameManager.GetGroupData(gridGroupId);
+	}
 }
