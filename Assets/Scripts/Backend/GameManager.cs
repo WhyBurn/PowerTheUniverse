@@ -26,7 +26,7 @@ public class GameManager
 	/// Invoked when the game ends. Passes whether the game ended in a victory
 	/// and when the player won.
 	/// </summary>
-	public UnityEvent<bool, int> OnGameEnd = new UnityEvent<bool, int>();
+	public UnityEvent<bool, float> OnGameEnd = new UnityEvent<bool, float>();
 	/// <summary>
 	/// Invoked when the cash or cash income changes. Passes the current cash
 	/// and cash income values.
@@ -66,7 +66,7 @@ public class GameManager
     }
     public bool Winning
     {
-        get { return (totalIncome >= TargetIncome); }
+        get { return ((totalIncome + income) >= TargetIncome); }
     }
     public bool Losing
     {
@@ -131,30 +131,19 @@ public class GameManager
             {
                 winningStartTime = timePassed;
             }
-            if (timePassed > winningStartTime + timeTillGameEnd)
-            {
-                EndGame();
-            }
         }
         else
         {
             winningStartTime = -1;
             if (Losing)
             {
-                if (maxIncome < TargetIncome)
+                if (losingStartTime <= 0)
+                {
+                    losingStartTime = timePassed;
+                }
+                if (timePassed > losingStartTime + timeTillGameEnd)
                 {
                     EndGame();
-                }
-                else
-                {
-                    if (losingStartTime <= 0)
-                    {
-                        losingStartTime = timePassed;
-                    }
-                    if (timePassed > losingStartTime + timeTillGameEnd)
-                    {
-                        EndGame();
-                    }
                 }
             }
             else
@@ -170,7 +159,7 @@ public class GameManager
         {
             Debug.Log("Earning enough money! Victory!");
         }
-        OnGameEnd.Invoke(Winning, Mathf.FloorToInt(timePassed));
+        OnGameEnd.Invoke(totalIncome >= TargetIncome, winningStartTime);
     }
 
     public void AddBuilding(Building building)

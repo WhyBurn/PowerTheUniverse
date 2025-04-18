@@ -339,7 +339,7 @@ public class GameController : MonoBehaviour
 		scienceIncomeLabel.text += newIncome + ")";
 	}
 
-    public void EndGame(bool victory, int victoryTime)
+    public void EndGame(bool victory, float victoryTime)
     {
         Debug.Log("Game has ended");
 		gameEnded = true;
@@ -350,11 +350,11 @@ public class GameController : MonoBehaviour
 			{
 				PlayerPrefs.SetInt(gameManager.MissionName, rank);
 			}
-			int previousTime = PlayerPrefs.GetInt(gameManager.MissionName + "Time", -1);
+			float previousTime = PlayerPrefs.GetFloat(gameManager.MissionName + "Time", -1);
 			Debug.Log(previousTime + "," + victoryTime);
             if (previousTime <= 0 || previousTime > victoryTime)
             {
-				PlayerPrefs.SetInt(gameManager.MissionName + "Time", victoryTime);
+				PlayerPrefs.SetFloat(gameManager.MissionName + "Time", victoryTime);
             }
 			if (victoryDocument != null)
 			{
