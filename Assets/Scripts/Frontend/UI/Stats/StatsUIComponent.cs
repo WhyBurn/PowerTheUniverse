@@ -59,7 +59,7 @@ public class StatsUIComponent : MonoBehaviour
 
     private void Update()
     {
-		pieChartController.SetIncomeAndGoal(gameController.Income, gameController.TargetIncome);
+		pieChartController.SetIncomeAndGoal(gameController.TotalIncome, gameController.TargetIncome);
 		UpdateRank();
     }
 

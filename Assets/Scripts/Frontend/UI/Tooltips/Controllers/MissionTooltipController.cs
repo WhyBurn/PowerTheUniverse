@@ -49,11 +49,11 @@ namespace AstralAvarice.UI.Tooltips
 					return ("Complete mission " + mission.prereqMission + " with rank " + uiSettings.RankSettings[mission.prereqRank].name + " or better to unlock.");
 				}
 			}
-			float bestTime = PlayerPrefs.GetFloat(mission.missionName + "Time", -1);
+			int bestTime = PlayerPrefs.GetInt(mission.missionName + "Time", -1);
 			if (bestTime > 0)
 			{
-				string timeText = Mathf.FloorToInt(bestTime / 60).ToString("00");
-				timeText += ":" + (bestTime % 60).ToString("00.0");
+				string timeText = (bestTime / 60).ToString("00");
+				timeText += ":" + (bestTime % 60).ToString("00");
 				return ("Best time: " + timeText);
 			}
 			else if(bestTime == 0)

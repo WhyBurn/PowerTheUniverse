@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class GameManager
 {
-    private readonly int paymentInterval = 30;
+    public readonly int paymentInterval = 30;
     private readonly int timeTillGameEnd = 10;
 
     private List<Building> buildings = new List<Building>();
@@ -15,18 +15,18 @@ public class GameManager
     private MissionData currentMission;
     private int scienceHeld;
     private int scienceIncome;
-    private bool hadEnoughIncomePreviously;
     private int nextGroupId;
     private SortedSet<int> freeGroupIds = new SortedSet<int>();
     private float winningStartTime;
     private float losingStartTime;
     private int maxIncome;
+    private int totalIncome;
 
 	/// <summary>
 	/// Invoked when the game ends. Passes whether the game ended in a victory
 	/// and when the player won.
 	/// </summary>
-	public UnityEvent<bool, float> OnGameEnd = new UnityEvent<bool, float>();
+	public UnityEvent<bool, int> OnGameEnd = new UnityEvent<bool, int>();
 	/// <summary>
 	/// Invoked when the cash or cash income changes. Passes the current cash
 	/// and cash income values.
@@ -66,15 +66,19 @@ public class GameManager
     }
     public bool Winning
     {
-        get { return (income >= TargetIncome); }
+        get { return (totalIncome >= TargetIncome); }
     }
     public bool Losing
     {
-        get { return (maxIncome < TargetIncome || (cash <= 0 && income <= 0)); }
+        get { return ((totalIncome < TargetIncome && maxIncome <= 0) || (cash <= 0 && income <= 0)); }
     }
     public float WinningStartTime
     {
         get { return (winningStartTime); }
+    }
+    public int TotalIncome
+    {
+        get { return (totalIncome); }
     }
 
     public void SpendMoney(int spentAmount)
@@ -91,7 +95,6 @@ public class GameManager
     //Use this if buildings don't need to be instantiated at start.
     public void StartMission(MissionData mission)
     {
-        hadEnoughIncomePreviously = false;
         currentMission = mission;
         cash = mission.startingCash;
         scienceHeld = mission.startingScience;
@@ -111,21 +114,14 @@ public class GameManager
         for(int i = 0; i < numPayouts; ++i)
         {
             cash += income;
+            totalIncome += income;
             scienceHeld += scienceIncome;
             OnUpdatedCashAndCashIncome.Invoke(cash, income);
 			OnUpdatedScienceAndScienceIncome.Invoke(scienceHeld, scienceIncome);
 
-            if (income >= currentMission.cashGoal)
+            if (totalIncome >= currentMission.cashGoal)
             {
-                if (!hadEnoughIncomePreviously)
-                {
-                    hadEnoughIncomePreviously = true;
-                }
-                else
-                {
-                    EndGame();
-                    return;
-                }
+                EndGame();
             }
         }
         if(Winning)
@@ -174,7 +170,7 @@ public class GameManager
         {
             Debug.Log("Earning enough money! Victory!");
         }
-        OnGameEnd.Invoke(Winning, winningStartTime);
+        OnGameEnd.Invoke(Winning, Mathf.FloorToInt(timePassed));
     }
 
     public void AddBuilding(Building building)
