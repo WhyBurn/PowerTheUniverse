@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Advanced Tutorial
   m_EditorClassIdentifier: 
   startingCash: 50000
-  cashGoal: 20000
+  cashGoal: 30000
   goalTimes: b400000068010000e00100000c030000
   missionName: Advanced Tutorial
   startingScience: 5000

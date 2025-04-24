@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Highrise Halls
   m_EditorClassIdentifier: 
   startingCash: 15000
-  cashGoal: 3000
+  cashGoal: 10000
   goalTimes: 960000002c010000a401000058020000
   missionName: Highrise Halls
   startingScience: 300

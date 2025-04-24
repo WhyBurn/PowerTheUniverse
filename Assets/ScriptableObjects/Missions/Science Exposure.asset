@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Science Exposure
   m_EditorClassIdentifier: 
   startingCash: 5000
-  cashGoal: 3000
+  cashGoal: 10000
   goalTimes: f0000000a401000058020000d0020000
   missionName: Science Exposure
   startingScience: 0

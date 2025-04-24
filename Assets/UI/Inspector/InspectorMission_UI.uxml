@@ -6,6 +6,6 @@
             <engine:Label text="Astral Avarice" name="Subheading" class="subheader subheader1" style="white-space: normal; margin-bottom: 0;" />
             <engine:Label text="Mission: " name="MissionName" class="subheader2" style="margin-top: 0;" />
         </engine:VisualElement>
-        <engine:Label text="Reach an income of &lt;b&gt;&lt;color=#8BE03AFF&gt;$100&lt;/color&gt;&lt;/b&gt; by &lt;b&gt;&lt;color=#9f2424ff&gt;SECONDS&lt;/color&gt;&lt;/b&gt;. " name="MissionDescription" class="textbox" style="flex-wrap: nowrap; white-space: normal; -unity-background-scale-mode: stretch-to-fill; background-size: 100px 100px;" />
+        <engine:Label text="Collect a total income of &lt;b&gt;&lt;color=#8BE03AFF&gt;$100&lt;/color&gt;&lt;/b&gt; by &lt;b&gt;&lt;color=#9f2424ff&gt;SECONDS&lt;/color&gt;&lt;/b&gt;. " name="MissionDescription" class="textbox" style="flex-wrap: nowrap; white-space: normal; -unity-background-scale-mode: stretch-to-fill; background-size: 100px 100px;" />
     </engine:VisualElement>
 </engine:UXML>

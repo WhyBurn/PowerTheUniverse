@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Asteroid Field
   m_EditorClassIdentifier: 
   startingCash: 2500
-  cashGoal: 3000
+  cashGoal: 10000
   goalTimes: 58020000ee02000056040000dc050000
   missionName: Asteroid Field
   startingScience: 0

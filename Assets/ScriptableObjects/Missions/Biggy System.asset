@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Biggy System
   m_EditorClassIdentifier: 
   startingCash: 3000
-  cashGoal: 3500
+  cashGoal: 12000
   goalTimes: d0020000c003000092040000dc050000
   missionName: Biggy System
   startingScience: 0

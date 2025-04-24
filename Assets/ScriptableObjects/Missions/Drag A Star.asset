@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Drag A Star
   m_EditorClassIdentifier: 
   startingCash: 5000
-  cashGoal: 2000
+  cashGoal: 10000
   goalTimes: b20200008403000092040000fa050000
   missionName: Drag A Star
   startingScience: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Large System
   m_EditorClassIdentifier: 
   startingCash: 2500
-  cashGoal: 8000
+  cashGoal: 20000
   goalTimes: 7404000064050000fa05000008070000
   missionName: Large System
   startingScience: 0

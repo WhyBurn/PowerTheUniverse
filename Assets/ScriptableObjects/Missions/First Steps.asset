@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: First Steps
   m_EditorClassIdentifier: 
   startingCash: 2500
-  cashGoal: 850
+  cashGoal: 3000
   goalTimes: b400000068010000e00100000c030000
   missionName: First Steps
   startingScience: 0
